@@ -1,7 +1,9 @@
 class Node {
   constructor() {
     this.value = null;
-    this.children = {};
+    this.children = {
+      /* Char: Node */
+    };
   }
 }
 
@@ -21,6 +23,7 @@ class Trie {
       node = node.children[char];
     }
     node.value = value;
+    node.isWord = true;
   }
 
   find(key) {
@@ -34,7 +37,33 @@ class Trie {
         return null;
       }
     }
-    return node.value;
+    return node;
+  }
+
+  keysWithPrefix(prefix) {
+    const node = this.find(prefix);
+    if (!node) {
+      return [];
+    }
+    const result = [];
+    this.traverse(node, prefix.split(""), result);
+    return result
+      .map(chars => {
+        return chars.join("");
+      })
+      .sort();
+  }
+
+  traverse(root, prefix, result) {
+    if (root.isWord) {
+      result.push([...prefix]); //clone the Array
+    }
+    for (const char in root.children) {
+      const child = root.children[char];
+      prefix.push(char);
+      this.traverse(child, prefix, result);
+      prefix.pop();
+    }
   }
 }
 
