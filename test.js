@@ -11,8 +11,8 @@ function test() {
   trie.insert("foo", "ff");
   trie.insert("foobar", "fb");
   trie.insert("bar", "bb");
-  trie.insert("测试", "");
   trie.insert("测验", "");
+  trie.insert("测试", "");
 
   assert.equal(trie.find("foo").value, "ff");
   assert.equal(trie.find("bar").value, "bb");

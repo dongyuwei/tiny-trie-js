@@ -47,19 +47,15 @@ class Trie {
     }
     const result = [];
     this.traverse(node, prefix.split(""), result);
-    return result
-      .map(chars => {
-        return chars.join("");
-      })
-      .sort();
+    return result.sort();
   }
 
-  traverse(root, prefix, result) {
-    if (root.isWord) {
-      result.push([...prefix]); //clone the Array
+  traverse(node, prefix, result) {
+    if (node.isWord) {
+      result.push(prefix.join(""));
     }
-    for (const char in root.children) {
-      const child = root.children[char];
+    for (const char in node.children) {
+      const child = node.children[char];
       prefix.push(char);
       this.traverse(child, prefix, result);
       prefix.pop();
