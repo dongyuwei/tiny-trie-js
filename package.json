@@ -1,0 +1,20 @@
+{
+  "name": "tiny-trie",
+  "version": "1.0.0",
+  "description": "Simple [trie](https://en.wikipedia.org/wiki/Trie) data structure implemented in JavaScript.",
+  "main": "trie.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dongyuwei/tiny-trie.git"
+  },
+  "keywords": [],
+  "author": "Dong yuwei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dongyuwei/tiny-trie/issues"
+  },
+  "homepage": "https://github.com/dongyuwei/tiny-trie#readme"
+}
