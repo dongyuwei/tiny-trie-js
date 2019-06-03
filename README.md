@@ -1,4 +1,4 @@
-# tiny-trie
+# tiny-trie-js
 
 Simple [trie](https://en.wikipedia.org/wiki/Trie) data structure implemented in JavaScript.
 
