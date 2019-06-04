@@ -46,20 +46,20 @@ class Trie {
       return [];
     }
     const result = [];
-    this.traverse(node, prefix.split(""), result);
+    traverse(node, prefix.split(""), result);
     return result.sort();
   }
+}
 
-  traverse(node, prefixStack, result) {
-    if (node.isWord) {
-      result.push(prefixStack.join(""));
-    }
-    for (const char in node.children) {
-      const child = node.children[char];
-      prefixStack.push(char);
-      this.traverse(child, prefixStack, result);
-      prefixStack.pop();
-    }
+function traverse(node, prefixStack, result) {
+  if (node.isWord) {
+    result.push(prefixStack.join(""));
+  }
+  for (const char in node.children) {
+    const child = node.children[char];
+    prefixStack.push(char);
+    traverse(child, prefixStack, result);
+    prefixStack.pop();
   }
 }
 
