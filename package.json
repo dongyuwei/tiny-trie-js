@@ -1,6 +1,6 @@
 {
   "name": "tiny-trie-js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple [trie](https://en.wikipedia.org/wiki/Trie) data structure implemented in JavaScript.",
   "main": "trie.js",
   "scripts": {

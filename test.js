@@ -22,5 +22,11 @@ function test() {
   assert.deepEqual(trie.keysWithPrefix("foo"), ["foo", "foobar"]);
   assert.deepEqual(trie.keysWithPrefix("hhhhhhh"), []);
   assert.deepEqual(trie.keysWithPrefix("测"), ["测试", "测验"]);
+
+  const serialized = "ab$f$))c$)d$e$)))foo$bar$))))))bar$)))测验$)试$))";
+  assert.equal(trie.serialize(), serialized);
+
+  const trie2 = trie.deserialize(serialized);
+  assert.deepEqual(trie2.serialize(), serialized);
 }
 setImmediate(test);
