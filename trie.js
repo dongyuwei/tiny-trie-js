@@ -53,12 +53,15 @@ class Trie {
   traverse(node, prefixStack, result) {
     if (node.isWord) {
       result.push(prefixStack.join(""));
+      console.log("ok", prefixStack.join(""));
     }
     for (const char in node.children) {
       const child = node.children[char];
+      console.log("+++ push char", char, prefixStack);
       prefixStack.push(char);
       this.traverse(child, prefixStack, result);
       prefixStack.pop();
+      console.log("--- pop char", char, prefixStack);
     }
   }
 }
