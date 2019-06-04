@@ -27,6 +27,6 @@ function test() {
   assert.equal(trie.serialize(), serialized);
 
   const trie2 = trie.deserialize(serialized);
-  assert.deepEqual(trie2.serialize(), serialized);
+  assert.equal(trie2.serialize(), serialized);
 }
 setImmediate(test);

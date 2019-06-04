@@ -24,7 +24,7 @@ class Trie {
       node.char = char;
     }
     node.value = value;
-    node.isWord = true;
+    node.terminal = true;
   }
 
   find(key) {
@@ -67,7 +67,7 @@ class Trie {
     while (index < length) {
       const char = serialized[index];
       switch (char) {
-        case EndFlag:
+        case TerminalFlag:
           words.push(word.join(""));
           break;
         case PopOpetator:
@@ -87,7 +87,7 @@ class Trie {
 }
 
 function _traverse(node, prefixStack, result) {
-  if (node.isWord) {
+  if (node.terminal) {
     result.push(prefixStack.join(""));
   }
   for (const char in node.children) {
@@ -98,12 +98,12 @@ function _traverse(node, prefixStack, result) {
   }
 }
 
-const EndFlag = "$";
+const TerminalFlag = "$";
 const PopOpetator = ")";
 function _serialize(node, stack) {
   stack.push(node.char);
-  if (node.isWord) {
-    stack.push(EndFlag);
+  if (node.terminal) {
+    stack.push(TerminalFlag);
   }
   for (const char in node.children) {
     const child = node.children[char];
