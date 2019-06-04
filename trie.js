@@ -61,14 +61,13 @@ class Trie {
     serialized = serialized.split("");
     const length = serialized.length;
     const trie = new Trie();
-    const words = [];
     const word = [];
     let index = 0;
     while (index < length) {
       const char = serialized[index];
       switch (char) {
         case TerminalFlag:
-          words.push(word.join(""));
+          trie.insert(word.join(""));
           break;
         case PopOpetator:
           word.pop();
@@ -79,9 +78,6 @@ class Trie {
       }
       index++;
     }
-    words.forEach(w => {
-      trie.insert(w);
-    });
     return trie;
   }
 }
