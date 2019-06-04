@@ -23,5 +23,4 @@ function test() {
   assert.deepEqual(trie.keysWithPrefix("hhhhhhh"), []);
   assert.deepEqual(trie.keysWithPrefix("测"), ["测试", "测验"]);
 }
-
-test();
+setImmediate(test);
