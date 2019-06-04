@@ -50,15 +50,15 @@ class Trie {
     return result.sort();
   }
 
-  traverse(node, prefix, result) {
+  traverse(node, prefixStack, result) {
     if (node.isWord) {
-      result.push(prefix.join(""));
+      result.push(prefixStack.join(""));
     }
     for (const char in node.children) {
       const child = node.children[char];
-      prefix.push(char);
-      this.traverse(child, prefix, result);
-      prefix.pop();
+      prefixStack.push(char);
+      this.traverse(child, prefixStack, result);
+      prefixStack.pop();
     }
   }
 }
