@@ -9,7 +9,7 @@ Simple [trie](https://en.wikipedia.org/wiki/Trie) data structure implemented in 
 ## API
 
 ```js
-const Trie = require("tiny-trie-js");
+const { Trie } = require('tiny-trie-js');
 const trie = new Trie();
 ```
 

@@ -1,33 +1,43 @@
-class Node {
-  constructor() {
-    this.value = null;
-    this.children = {
-      /* Char: Node */
-    };
+class TrieNode {
+  char: string;
+  value: any;
+  terminated: boolean;
+  children: {
+    [char: string]: TrieNode;
+  };
+
+  constructor(char: string, value: any, terminated = false) {
+    this.char = char;
+    this.value = value;
+    this.terminated = terminated;
+
+    this.children = {};
   }
 }
 
-class Trie {
+export class Trie {
+  root: TrieNode;
+
   constructor() {
-    this.root = new Node();
+    this.root = new TrieNode('', undefined, false);
   }
 
-  insert(key, value = null) {
+  insert(key: string, value = undefined) {
     const length = key.length;
     let node = this.root;
     for (let i = 0; i < length; i++) {
       const char = key.charAt(i);
       if (!node.children[char]) {
-        node.children[char] = new Node();
+        node.children[char] = new TrieNode(char, undefined, false);
       }
       node = node.children[char];
-      node.char = char;
     }
+
     node.value = value;
-    node.terminal = true;
+    node.terminated = true;
   }
 
-  find(key) {
+  find(key: string) {
     const length = key.length;
     let node = this.root;
     for (let i = 0; i < length; i++) {
@@ -35,45 +45,45 @@ class Trie {
       if (node.children[char]) {
         node = node.children[char];
       } else {
-        return null;
+        return undefined;
       }
     }
     return node;
   }
 
-  keysWithPrefix(prefix) {
+  keysWithPrefix(prefix: string) {
     const node = this.find(prefix);
     if (!node) {
       return [];
     }
     const result = [];
-    _traverse(node, prefix.split(""), result);
+    _traverse(node, prefix.split(''), result);
     return result.sort();
   }
 
   serialize() {
     const stack = [];
     _serialize(this.root, stack);
-    return stack.join("");
+    return stack.join('');
   }
 
-  deserialize(serialized) {
-    serialized = serialized.split("");
-    const length = serialized.length;
+  deserialize(serialized: string) {
+    const list = serialized.split('');
+    const length = list.length;
     const trie = new Trie();
-    const word = [];
+    const chars = [];
     let index = 0;
     while (index < length) {
-      const char = serialized[index];
+      const char = list[index];
       switch (char) {
         case TerminalFlag:
-          trie.insert(word.join(""));
+          trie.insert(chars.join(''));
           break;
         case PopOpetator:
-          word.pop();
+          chars.pop();
           break;
         default:
-          word.push(char);
+          chars.push(char);
           break;
       }
       index++;
@@ -82,9 +92,9 @@ class Trie {
   }
 }
 
-function _traverse(node, prefixStack, result) {
-  if (node.terminal) {
-    result.push(prefixStack.join(""));
+function _traverse(node: TrieNode, prefixStack: string[], result: string[]) {
+  if (node.terminated) {
+    result.push(prefixStack.join(''));
   }
   for (const char in node.children) {
     const child = node.children[char];
@@ -94,11 +104,11 @@ function _traverse(node, prefixStack, result) {
   }
 }
 
-const TerminalFlag = "$";
-const PopOpetator = ")";
-function _serialize(node, stack) {
+const TerminalFlag = '$';
+const PopOpetator = ')';
+function _serialize(node: TrieNode, stack: string[]) {
   stack.push(node.char);
-  if (node.terminal) {
+  if (node.terminated) {
     stack.push(TerminalFlag);
   }
   for (const char in node.children) {
@@ -107,5 +117,3 @@ function _serialize(node, stack) {
     stack.push(PopOpetator);
   }
 }
-
-module.exports = Trie;

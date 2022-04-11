@@ -61,3 +61,5 @@ typings/
 .next
 _ttd_log_
 .vscode
+
+trie.js
