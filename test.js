@@ -29,4 +29,5 @@ function test() {
   const trie2 = trie.deserialize(serialized);
   assert.equal(trie2.serialize(), serialized);
 }
-setImmediate(test);
+
+test();
