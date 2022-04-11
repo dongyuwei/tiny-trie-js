@@ -4,7 +4,7 @@ Simple [trie](https://en.wikipedia.org/wiki/Trie) data structure implemented in 
 
 ## Test
 
-`npm test`
+`pnpm test`
 
 ## API
 
