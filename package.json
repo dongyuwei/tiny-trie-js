@@ -1,22 +1,22 @@
 {
-  "name": "tiny-trie-js",
-  "version": "1.0.4",
-  "description": "Simple [trie](https://en.wikipedia.org/wiki/Trie) data structure implemented in JavaScript.",
+  "name": "tiny-trie-ts",
+  "version": "1.0.6",
+  "description": "Simple [trie](https://en.wikipedia.org/wiki/Trie) data structure implemented in TypeScript.",
   "main": "trie.js",
   "scripts": {
     "test": "pnpm tsc trie.ts && node test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dongyuwei/tiny-trie.git"
+    "url": "https://github.com/dongyuwei/tiny-trie-js"
   },
   "keywords": [],
   "author": "Dong Yuwei",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dongyuwei/tiny-trie/issues"
+    "url": "https://github.com/dongyuwei/tiny-trie-js/issues"
   },
-  "homepage": "https://github.com/dongyuwei/tiny-trie#readme",
+  "homepage": "https://github.com/dongyuwei/tiny-trie-js#readme",
   "devDependencies": {
     "typescript": "^4.6.3"
   }
